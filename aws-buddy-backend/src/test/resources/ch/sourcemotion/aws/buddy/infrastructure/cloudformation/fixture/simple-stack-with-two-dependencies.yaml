@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  OtherStackName:
+    Type: String
+  AnotherStackName:
+    Type: String
+Resources:
+  S3Resource:
+    Type: AWS::S3::Bucket

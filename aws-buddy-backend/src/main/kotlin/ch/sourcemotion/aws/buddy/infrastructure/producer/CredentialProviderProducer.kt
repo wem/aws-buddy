@@ -1,18 +1,17 @@
 package ch.sourcemotion.aws.buddy.infrastructure.producer
 
+import ch.sourcemotion.aws.buddy.infrastructure.ConfigurationProperties.AWS.PROFILE
 import io.quarkus.arc.DefaultBean
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.inject.Produces
-import java.util.Optional
+import java.util.*
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProviderChain
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider
 
 @ApplicationScoped
-class CredentialProviderProducer(
-    @ConfigProperty(name = "aws.profile") val profile: Optional<String>
-) {
+class CredentialProviderProducer(@ConfigProperty(name = PROFILE) val profile: Optional<String>) {
 
     @ApplicationScoped
     @Produces

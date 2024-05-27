@@ -1,5 +1,8 @@
 package ch.sourcemotion.aws.buddy.infrastructure.producer
 
+import ch.sourcemotion.aws.buddy.infrastructure.ConfigurationProperties.Neo4j.NEO4J_PASSWORD
+import ch.sourcemotion.aws.buddy.infrastructure.ConfigurationProperties.Neo4j.NEO4J_URI
+import ch.sourcemotion.aws.buddy.infrastructure.ConfigurationProperties.Neo4j.NEO4J_USERNAME
 import io.github.oshai.kotlinlogging.KotlinLogging
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.inject.Produces
@@ -19,10 +22,6 @@ class Neo4JDriverProducer(
 
     companion object {
         val logger = KotlinLogging.logger {}
-
-        const val NEO4J_URI = "neo4j.uri"
-        const val NEO4J_USERNAME = "neo4j.username"
-        const val NEO4J_PASSWORD = "neo4j.password"
     }
 
     @ApplicationScoped

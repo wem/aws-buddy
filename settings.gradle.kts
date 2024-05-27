@@ -6,6 +6,7 @@ include("aws-buddy-backend")
 pluginManagement {
     val quarkusVersion: String by settings
     val quarkusPluginId: String by settings
+    val kotlinVVersion: String by settings
 
     repositories {
         mavenCentral()
@@ -14,7 +15,10 @@ pluginManagement {
     }
     plugins {
         id(quarkusPluginId) version quarkusVersion
-        kotlin("jvm") version "1.9.23"
+        kotlin("jvm") version kotlinVVersion
+        kotlin("multiplatform") version kotlinVVersion
+        kotlin("plugin.allopen") version kotlinVVersion
+        id("org.jetbrains.kotlin.plugin.serialization") version kotlinVVersion
     }
 }
 

@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     kotlin("jvm")
     kotlin("plugin.allopen")
@@ -28,7 +30,7 @@ val kotestVersion: String by project
 dependencies {
     implementation(enforcedPlatform("io.quarkus.platform:quarkus-bom:${quarkusVersion}"))
     implementation(platform("software.amazon.awssdk:bom:$awsSdkVersion"))
-    implementation(platform("org.testcontainers:testcontainers-bom:$testcontainersVersion"))
+    testImplementation(platform("org.testcontainers:testcontainers-bom:$testcontainersVersion"))
 
     implementation(project(":aws-buddy-frontend"))
 
@@ -63,6 +65,10 @@ kotlin {
         languageVersion = JavaLanguageVersion.of(21)
         vendor = JvmVendorSpec.GRAAL_VM
     }
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_21
+        javaParameters = true
+    }
 }
 
 java {
@@ -86,9 +92,4 @@ allOpen {
     annotation("jakarta.ws.rs.Path")
     annotation("jakarta.enterprise.context.ApplicationScoped")
     annotation("io.quarkus.test.junit.QuarkusTest")
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "${JavaVersion.VERSION_21}"
-    kotlinOptions.javaParameters = true
 }
